@@ -5,7 +5,7 @@ class JoinModel {
     const interestString = interests.join(', ')
     try{
     const [result] = await db.execute(
-      "INSERT INTO join_requests (name, email, course, year_level, student_id, interests, message) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO applicants (name, email, course, year_level, student_id, interests, message) VALUES (?, ?, ?, ?, ?, ?, ?)",
       [name, email, course, yearLevel, studentId, interestString, message]
     );
 

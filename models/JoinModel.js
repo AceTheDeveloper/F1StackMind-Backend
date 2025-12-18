@@ -19,7 +19,7 @@ class JoinModel {
   async check({ email }) {
   try {
     const [rows] = await db.execute(
-      "SELECT * FROM join_requests WHERE email = ?",
+      "SELECT * FROM applicants WHERE email = ?",
       [email]
     );
     return rows

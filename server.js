@@ -6,8 +6,12 @@ import authRoutes from './routes/auth.routes.js'
 import sequelize from "./config/db.js";
 import ApplicantModel from "./models/ApplicantModel.js";
 import UserModel from "./models/UserModel.js";
+import path from 'path'
+
 
 const app = express();
+app.use('/assets', express.static(path.join(process.cwd(), 'assets')));
+
 
 app.use(cors());
 app.use(express.json());

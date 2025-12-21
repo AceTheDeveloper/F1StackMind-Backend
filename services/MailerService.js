@@ -21,7 +21,7 @@ class MailerService {
         html: `
           <div style="background-color:#171717; padding:20px; text-align:center;">
               <div style="text-align:center; margin-bottom:20px;">
-                <img src="../assets/f1mainpic.png" alt="Logo" width="100" style="display:block; margin:0 auto;" />
+                <img src="https://f1stackmind-backend.onrender.com/assets/f1mainpic.png" alt="Logo" width="100" style="display:block; margin:0 auto;" />
                 <p style="font-size:25px; margin-bottom:15px;font-weight: bold; text-align: center; color: white; font-family:Arial">Welcome to F1StackMind!</p>
               </div>
             </div>
@@ -42,11 +42,6 @@ class MailerService {
               </p>
             </div>
         `, 
-        attachments : {
-          filename: 'f1mainpic.png',
-          path: './assets/f1mainpic.png',
-          cid: 'logo', // matches src="cid:logo"
-        }
       });
     } catch (error) {
       console.error("MailerService error:", error);

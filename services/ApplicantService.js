@@ -36,7 +36,11 @@ class ApplicantService {
 
   async showApplicants() {
     try {
-      const applicants = ApplicantModel.findAll({order : [['createdAt', 'DESC']]});
+      const applicants = await ApplicantModel.findAll({
+        order: [['createdAt', 'DESC']],
+        where: { user_id: null }
+      });
+
       return applicants;
     } catch (error) {
       console.error("Model error:", error);

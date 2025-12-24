@@ -4,6 +4,7 @@ import UserService from '../services/UserServices.js'
 import ProfileService from "../services/ProfileService.js";
 import { generateUid } from '../helpers/uid.helper.js'
 import bcrypt from 'bcrypt'
+import ApplicantModel from "../models/ApplicantModel.js";
 
 class ApplicantController {
   async showApplicants(req, res) {
@@ -45,24 +46,30 @@ class ApplicantController {
         const {name, email, student_id, year_level} = applicant;
 
         const hashedPassword = await bcrypt.hash(student_id, 16);
+
         
         const createdUser = await UserService.create(email, hashedPassword);
 
-       if(createdUser){
-        await MailerService.sendAcceptedEmail(email, name, student_id);
+        await ApplicantModel.update(
+          {user_id : createdUser.id},
+          {where : {id : id}}
+        )
         
         // Generate  a uid
         const uid = generateUid();
         
         // Create a user here;
-        ProfileService.createUser({
+          const createdProfile = await ProfileService.createUser({
             uid,
             student_id,
             year_level,
             name,
         });
 
-        ApplicantService.deleteApplicant(id)
+      if(createdProfile){
+        await MailerService.sendAcceptedEmail(email, name, student_id);
+
+
         return res.status(200).json({success: true, message: "Applicant Accepted"});
       }
 

@@ -7,6 +7,7 @@ import sequelize from "./config/db.js";
 import ApplicantModel from "./models/ApplicantModel.js";
 import UserModel from "./models/UserModel.js";
 import ProfileModel from './models/ProfileModel.js'
+import './models/Associations.js';
 import path from 'path'
 
 

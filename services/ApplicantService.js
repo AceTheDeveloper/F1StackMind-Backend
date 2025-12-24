@@ -53,6 +53,17 @@ class ApplicantService {
       throw err;
     }
   }
+
+  async deleteApplicant(id){
+    try{
+      const applicant = ApplicantModel.destroy({
+        where : {id}
+      })
+    } catch (e){
+        console.log("Applicant Service err :", e);
+        throw e;
+    }
+  }
 }
 
 export default new ApplicantService();

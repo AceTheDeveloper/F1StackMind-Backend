@@ -1,6 +1,8 @@
 import ApplicantService from "../services/ApplicantService.js";
 import MailerService from "../services/MailerService.js";
 import UserService from '../services/UserServices.js'
+import ProfileService from "../services/ProfileService.js";
+import { generateUid } from '../helpers/uid.helper.js'
 import bcrypt from 'bcrypt'
 
 class ApplicantController {
@@ -40,7 +42,7 @@ class ApplicantController {
           return res.status(401).json({message : "Invalid Details"});
         }
 
-        const {name, email, student_id} = applicant;
+        const {name, email, student_id, year_level} = applicant;
 
         const hashedPassword = await bcrypt.hash(student_id, 16);
         
@@ -48,12 +50,23 @@ class ApplicantController {
 
        if(createdUser){
         await MailerService.sendAcceptedEmail(email, name, student_id);
-
-        // This is temporary
-        return res.status(200).json({success: true, message: "Applicant Accepted"});
-      }
+        
+        // Generate  a uid
+        const uid = generateUid();
         
         // Create a user here;
+        ProfileService.createUser({
+            uid,
+            student_id,
+            year_level,
+            name,
+        });
+
+        ApplicantService.deleteApplicant(id)
+        return res.status(200).json({success: true, message: "Applicant Accepted"});
+      }
+
+        
         
       } catch(e){
         console.log(e);

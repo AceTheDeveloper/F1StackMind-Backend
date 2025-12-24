@@ -25,7 +25,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     console.log("Database connected successfully!");
 
-    await sequelize.sync({ alter: true}); //Always modify this if you want to migrate/seed a data
+    await sequelize.sync({ alter: false}); //Always modify this if you want to migrate/seed a data
     console.log("All models synchronized!");
 
     app.listen(3000, () => console.log("Server running on port 3000"));

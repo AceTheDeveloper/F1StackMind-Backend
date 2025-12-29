@@ -3,13 +3,14 @@ export function acceptedEmailTemplate(name, password) {
     <div style="background-color:#171717; padding:20px; text-align:center;">
       <div style="text-align:center; margin-bottom:20px;">
         <img src="https://f1stackmind-backend.onrender.com/assets/f1mainpic.png" alt="Logo" width="100" style="display:block; margin:0 auto;" />
-        <p style="font-size:25px; margin-bottom:15px;font-weight: bold; text-align: center; color: white; font-family:Arial">
-          Welcome to F1StackMind!
-        </p>
       </div>
     </div>
 
     <div style="background-color:#0a0a0a; padding:30px; font-family:Arial, sans-serif; color:white; line-height:1.6;">
+      <p style="font-size:25px; margin-bottom:15px;font-weight: bold; text-align: center; color: white; font-family:Arial">
+          Welcome to F1StackMind!
+      </p>
+
       <p style="font-size:16px; margin-bottom:15px; text-align: center;">Hi ${name},</p>
       <p style="font-size:16px; margin-bottom:15px; text-align: center;">Congratulations! You have been accepted.</p>
       <p style="font-size:16px; margin-bottom:15px; text-align: center;">

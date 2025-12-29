@@ -38,7 +38,6 @@ class ApplicantService {
     try {
       const applicants = await ApplicantModel.findAll({
         order: [['createdAt', 'DESC']],
-        where: { user_id: null }
       });
 
       return applicants;

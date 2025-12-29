@@ -1,10 +1,10 @@
 import ApplicantService from "../services/ApplicantService.js";
 import MailerService from "../services/MailerService.js";
 import UserService from '../services/UserServices.js'
-import ProfileService from "../services/ProfileService.js";
 import { generateUid } from '../helpers/uid.helper.js'
 import bcrypt from 'bcrypt'
 import ApplicantModel from "../models/ApplicantModel.js";
+import MembersService from "../services/MembersService.js";
 
 class ApplicantController {
   async showApplicants(req, res) {
@@ -43,33 +43,17 @@ class ApplicantController {
           return res.status(401).json({message : "Invalid Details"});
         }
 
-        const {name, email, student_id, year_level} = applicant;
+        const {name, email, student_id, year_level, interests} = applicant;
 
-        const hashedPassword = await bcrypt.hash(student_id, 16);
+        const hashedPassword = await bcrypt.hash(student_id, 12);
 
-        
         const createdUser = await UserService.create(email, hashedPassword);
 
-        await ApplicantModel.update(
-          {user_id : createdUser.id},
-          {where : {id : id}}
-        )
-        
-        // Generate  a uid
-        const uid = generateUid();
-        
-        // Create a user here;
-          const createdProfile = await ProfileService.createUser({
-            uid,
-            student_id,
-            year_level,
-            name,
-        });
+        const createdMember = await MembersService.createMember(createdUser.id, name, year_level, student_id, interests);        
 
-      if(createdProfile){
+      if(createdMember){
         await MailerService.sendAcceptedEmail(email, name, student_id);
-
-
+        ApplicantModel.destroy({where : {id}})
         return res.status(200).json({success: true, message: "Applicant Accepted"});
       }
 

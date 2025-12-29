@@ -1,3 +1,4 @@
+import UserModel from '../models/UserModel.js';
 import ApplicantService from '../services/ApplicantService.js';
 
 class JoinController {
@@ -5,7 +6,7 @@ class JoinController {
     try {
       const { name, email, course, yearLevel, studentId, interests, message } = req.body;
 
-      if (!email.endsWith('@phinmaed.com')) {
+      if (!email.toLowerCase().endsWith('@phinmaed.com')) {
         return res.json({ success: false, message: "Invalid email domain" });
       }
 
@@ -14,8 +15,11 @@ class JoinController {
       }
 
       const existingUser = await ApplicantService.check({ email });
-      if (existingUser) {
+
+      const existingMember = await UserModel.findOne({where : {email}});
+      if(existingMember || existingUser){
         return res.json({ success: false, message: "You are already registered" });
+
       }
 
       const id = await ApplicantService.create({ name, email, course, yearLevel, studentId, interests, message });

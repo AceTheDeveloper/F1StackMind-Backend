@@ -8,11 +8,6 @@ const ApplicantModel = sequelize.define('Applicants', {
     autoIncrement : true
   },
 
-  user_id :{
-    type : DataTypes.INTEGER,
-    allowNull : true,
-  },
-
   name : {
     type : DataTypes.STRING,
     allowNull : false

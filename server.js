@@ -4,6 +4,7 @@ import joinRoutes from "./routes/join.routes.js";
 import applicantRoutes from './routes/applicants.routes.js'
 import authRoutes from './routes/auth.routes.js'
 import memberRoutes from './routes/members.routes.js'
+import userRoutes from './routes/user.routes.js'
 import sequelize from "./config/db.js";
 import ApplicantModel from "./models/ApplicantModel.js";
 import UserModel from "./models/UserModel.js";
@@ -41,5 +42,6 @@ app.use("/api", joinRoutes);
 app.use("/api", applicantRoutes);
 app.use("/api", authRoutes);
 app.use("/api", memberRoutes);
+app.use("/api", userRoutes);
 
 app.listen(3000, () => console.log("Server running on port 3000"));

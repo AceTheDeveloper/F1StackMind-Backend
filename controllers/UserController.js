@@ -32,7 +32,7 @@ class UserController {
                 });
                 image_url = result.secure_url;
 
-                fs.unlink(req.file.path)
+                fs.unlinkSync(req.file.path)
                 }
 
                 // Update UserModel

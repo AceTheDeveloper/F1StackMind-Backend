@@ -9,6 +9,7 @@ import sequelize from "./config/db.js";
 import ApplicantModel from "./models/ApplicantModel.js";
 import UserModel from "./models/UserModel.js";
 import MemberModel from './models/MemberModel.js'
+import EventModel from "./models/EventModel.js";
 import path from 'path'
 
 

@@ -1,8 +1,7 @@
 import UserServices from "../services/UserServices.js";
-import cloudinary from "../config/cloudinary.js";
+import { saveToCloudinary } from "../helpers/cloudinary.helper.js";
 import UserModel from "../models/UserModel.js";
 import MemberModel from "../models/MemberModel.js";
-import fs from 'fs'
 
 class UserController {
     async show (req, res) {
@@ -25,14 +24,7 @@ class UserController {
                 let image_url = null;
 
                 if (req.file) {
-                const result = await cloudinary.uploader.upload(req.file.path, {
-                    folder: "profile_images", 
-                    use_filename: true,
-                    unique_filename: false,
-                });
-                image_url = result.secure_url;
-
-                fs.unlinkSync(req.file.path)
+                    image_url = await saveToCloudinary(req.file.path, 'profile_images');
                 }
 
                 // Update UserModel

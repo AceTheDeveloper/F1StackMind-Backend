@@ -8,15 +8,14 @@ const EventModel = sequelize.define('events', {
         autoIncrement : true,
     },
 
+    title : {
+        type : DataTypes.STRING,
+        allowNull : false
+    },
+
     description : {
         type : DataTypes.TEXT,
         allowNull : true
-    },
-
-    category : {
-        type : DataTypes.ENUM('academic', 'bootcamp'),
-        defaultValue : 'academic',
-        allowNull : false
     },
 
     status : {
@@ -24,13 +23,23 @@ const EventModel = sequelize.define('events', {
         defaultValue : 'up coming'
     },
 
-    start_datetime : {
-        type : DataTypes.DATE,
+    start_date : {
+        type : DataTypes.DATEONLY,
         allowNull : true
     },
 
-    end_datatime : {
-        type : DataTypes.DATE,
+    end_date : {
+        type : DataTypes.DATEONLY,
+        allowNull : false
+    },
+
+    start_time : {
+        type : DataTypes.TIME,
+        allowNull : false
+    },
+
+    end_time : {
+        type : DataTypes.TIME,
         allowNull : false
     },
 
@@ -43,11 +52,6 @@ const EventModel = sequelize.define('events', {
         type : DataTypes.STRING,
         allowNull : true
     },
-
-    max_attendees : {
-        type : DataTypes.INTEGER,
-        allowNull : true
-    }
 },{
     timestamps : true
 });

@@ -52,12 +52,11 @@ class ApplicantController {
         const createdMember = await MembersService.createMember(createdUser.id, name, year_level, student_id, interests);        
 
       if(createdMember){
-        await MailerService.sendAcceptedEmail(email, name, student_id);
+        // await MailerService.sendAcceptedEmail(email, name, student_id);
         ApplicantModel.destroy({where : {id}})
         return res.status(200).json({success: true, message: "Applicant Accepted"});
       }
 
-        
         
       } catch(e){
         console.log(e);

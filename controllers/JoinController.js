@@ -30,7 +30,7 @@ class JoinController {
           email,
           course,
           year_level: yearLevel,
-          studentId,
+          student_id : studentId,
           interests: JSON.stringify(interests), // ensure proper DB format
           message,
         });

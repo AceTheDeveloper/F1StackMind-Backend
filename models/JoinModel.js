@@ -1,5 +1,4 @@
 import db from "../config/db.js";
-import ApplicantModel from '../models/ApplicantModel.js'
 
 class JoinModel {
   async create({ name, email, course, yearLevel, studentId, interests, message }) {

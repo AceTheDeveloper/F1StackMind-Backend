@@ -10,6 +10,7 @@ const upload = multer({dest : 'upload/'})
 
 router.get('/events/show', authenticateToken, authorizeRoles('admin', 'user'), EventController.show)
 router.post('/events/create', authenticateToken, authorizeRoles('admin'), upload.single('image'), EventController.create);
-router.post('/events/sample', validate_api_key);
+router.post('/events/update/:id', EventController.update);
+router.post('/events/delete/:id', EventController.delete);
 
 export default router;

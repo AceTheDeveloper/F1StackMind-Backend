@@ -5,10 +5,20 @@ import EventModel from "../models/EventModel.js";
 class EventController {
     async show(req, res){
         try {
-            const events = await EventModel.findAll();
+            const events = await EventModel.findAll({order : [['start_date', 'DESC']]});
             res.status(200).json(events);
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    async show_event(req, res){
+        try {
+            const {id} = req.params
+            const event = await EventModel.findOne({where : {id}});
+            res.status(200).json(event);
+        } catch (e){
+            res.status(500).json({message : "Failed To Fetch", status : "failure"});
         }
     }
 
@@ -120,6 +130,19 @@ class EventController {
         if(!deleteEvent) return res.status(500).json({message : "Unable to delete", status : "Failure"});
         
         res.status(200).json({message : "Deleted Successfully", status : "success"});
+    }
+
+    async update_status(req, res){
+        const {id} = req.params;
+        const {status} = req.body;
+        
+        const updated_status = await EventModel.update({status}, {where : {id}})
+
+        if(updated_status){
+          return  res.status(200).json({message : "Status Updated Successfully", status : "success"});
+        } 
+
+        res.status(500).json({message : "An Error Occured", status : "failure"})
     }
 
 }

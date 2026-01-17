@@ -12,7 +12,7 @@ class AuthController {
     }
 
     try {
-      const user = await AuthService.login(email);      
+      const user = await AuthService.login(email);       
 
       if (!user) {
         return res.status(401).json({
@@ -34,11 +34,7 @@ class AuthController {
         message: "Login successful",
         token,
         user_role:user.role,
-         user: {
-          id: user.id,
-          email: user.email,
-          role: user.role,
-        }
+        user
       });
 
     } catch (error) {

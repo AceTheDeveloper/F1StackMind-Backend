@@ -32,7 +32,7 @@ const UserModel = sequelize.define('Users', {
     timestamps : true
 });
 
-UserModel.hasOne(MemberModel, {foreignKey : 'user_id', as : 'member'})
-MemberModel.belongsTo(UserModel, {foreignKey : 'user_id', as : 'user'})
+UserModel.hasOne(MemberModel, {foreignKey : 'user_id', as : 'member'});
+MemberModel.belongsTo(UserModel, {foreignKey : 'user_id', as : 'user'});
 
 export default UserModel;

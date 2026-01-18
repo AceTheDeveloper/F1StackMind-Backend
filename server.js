@@ -7,6 +7,10 @@ import memberRoutes from './routes/members.routes.js'
 import userRoutes from './routes/user.routes.js'
 import eventRoutes from './routes/events.routes.js'
 import noticeRoutes from './routes/notice.routes.js'
+
+// Notification route
+import notificationRoute from './routes/notification.routes.js';
+
 import adminDashboardRoutes from './routes/admin_dashboard.routes.js'
 import sequelize from "./config/db.js";
 import ApplicantModel from "./models/ApplicantModel.js";
@@ -30,7 +34,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     console.log("Database connected successfully!");
 
-    await sequelize.sync(); //Always modify this if you want to migrate/seed a data
+    await sequelize.sync(false); //Always modify this if you want to migrate/seed a data
     console.log("All models synchronized!");
 
     app.listen(3000, () => console.log("Server running on port 3000"));
@@ -49,6 +53,9 @@ app.use("/api", userRoutes);
 app.use('/api', eventRoutes);
 app.use('/api', noticeRoutes);
 app.use('/api', adminDashboardRoutes);
+
+// Notifications
+app.use('/api', notificationRoute);
 
 
 app.listen(3000, () => console.log("Server running on port 3000"));

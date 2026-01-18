@@ -1,3 +1,4 @@
+import { sendNotificationToUsers } from "../helpers/notifications.helper.js";
 import MemberModel from "../models/MemberModel.js";
 import NoticeModel from "../models/NoticeModel.js";
 
@@ -11,7 +12,6 @@ class NoticeController {
                 }
             });
 
-            console.log(notices);
             return res.status(200).json(notices);
         } catch(e){
             console.log(e);
@@ -30,9 +30,12 @@ class NoticeController {
                 urgent
             });
 
-            if(created) return res.status(201).json({message : "Notice Created Succesfully", status : "success"});
-
-            res.status(500).json({message : "An Error Occured", status : "failure"});
+            res.status(201).json({message : "Notice Created Succesfully", status : "success"});
+            sendNotificationToUsers({title, body : "New Announcement", urgent}).catch(console.error);
+            
+            if(!created){
+                return res.status(500).json({message : "An Error Occured", status : "failure"});
+            }
         } catch(e){
             console.log(e);
         }

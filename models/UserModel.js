@@ -21,6 +21,11 @@ const UserModel = sequelize.define('Users', {
         allowNull : false
     },
 
+    push_token : {
+        type : DataTypes.STRING,
+        allowNull : true
+    },
+
     role: {
         type: DataTypes.ENUM('member', 'admin'),
         allowNull: false,

@@ -7,6 +7,6 @@ import MemberController from "../controllers/MemberController.js";
 const router = express.Router();
 
 router.get('/members/show', authenticateToken, authorizeRoles('admin'), MemberController.showMembers);
-
+router.get('/members/show/:id', authenticateToken, authorizeRoles('admin'), MemberController.showSpecificMember);
 
 export default router;

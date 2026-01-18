@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import MemberModel from "./MemberModel.js";
+// import MemberModel from "./MemberModel.js";
 
 
 const UserModel = sequelize.define('Users', {
@@ -37,7 +37,7 @@ const UserModel = sequelize.define('Users', {
     timestamps : true
 });
 
-UserModel.hasOne(MemberModel, {foreignKey : 'user_id', as : 'member'});
-MemberModel.belongsTo(UserModel, {foreignKey : 'user_id', as : 'user'});
+// UserModel.hasOne(MemberModel, {foreignKey : 'user_id', as : 'member'});
+// MemberModel.belongsTo(UserModel, {foreignKey : 'user_id', as : 'user'});
 
 export default UserModel;

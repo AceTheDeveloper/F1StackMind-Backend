@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/db.js";
-import UserModel from "./UserModel.js";
 
 const MemberModel = sequelize.define('members', {
     id : {
@@ -44,7 +43,7 @@ const MemberModel = sequelize.define('members', {
     },
     
     contact_number  : {
-        type : DataTypes.INTEGER,
+        type : DataTypes.STRING,
         allowNull : true
     },
 
@@ -58,6 +57,5 @@ const MemberModel = sequelize.define('members', {
         allowNull : true
     }
 });
-
 
 export default MemberModel;

@@ -14,8 +14,10 @@ import notificationRoute from './routes/notification.routes.js';
 import adminDashboardRoutes from './routes/admin_dashboard.routes.js'
 import sequelize from "./config/db.js";
 import ApplicantModel from "./models/ApplicantModel.js";
-import UserModel from "./models/UserModel.js";
-import MemberModel from './models/MemberModel.js'
+// import UserModel from "./models/UserModel.js";
+// import MemberModel from "./models/MemberModel.js";
+
+import {UserModel, MemberModel} from './models/index.js'
 import EventModel from "./models/EventModel.js";
 import NoticeModel from "./models/NoticeModel.js";
 import path from 'path'

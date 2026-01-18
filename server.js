@@ -6,12 +6,14 @@ import authRoutes from './routes/auth.routes.js'
 import memberRoutes from './routes/members.routes.js'
 import userRoutes from './routes/user.routes.js'
 import eventRoutes from './routes/events.routes.js'
+import noticeRoutes from './routes/notice.routes.js'
 import adminDashboardRoutes from './routes/admin_dashboard.routes.js'
 import sequelize from "./config/db.js";
 import ApplicantModel from "./models/ApplicantModel.js";
 import UserModel from "./models/UserModel.js";
 import MemberModel from './models/MemberModel.js'
 import EventModel from "./models/EventModel.js";
+import NoticeModel from "./models/NoticeModel.js";
 import path from 'path'
 
 
@@ -45,6 +47,7 @@ app.use("/api", authRoutes);
 app.use("/api", memberRoutes);
 app.use("/api", userRoutes);
 app.use('/api', eventRoutes);
+app.use('/api', noticeRoutes);
 app.use('/api', adminDashboardRoutes);
 
 
